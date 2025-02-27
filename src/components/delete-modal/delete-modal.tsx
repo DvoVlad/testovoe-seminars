@@ -17,6 +17,7 @@ const DeleteModal: FC<Props> = observer(({ onClose, id }) => {
   const { loadSeminars } = useStore();
   const [isError, setIsError] = useState(false);
   const submitDelete = () => {
+    /*Либо удаляем элемент либо выводим сообщение об ошибке удаления*/
     request(`/seminars/${id}`, {
       method: 'DELETE'
     })

@@ -39,7 +39,7 @@ const UpdateModal: FC<Props> = observer(({ onClose, item }) => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     const result = {...datas};
-    console.log(result);
+    /* Либо обновляем элемент либо выводим сообщение об ошибке */
     request(`/seminars/${item.id}`, { method: 'PUT', body: JSON.stringify(result) })
     .catch((e) => {
       setIsError(true);

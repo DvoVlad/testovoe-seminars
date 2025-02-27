@@ -10,6 +10,7 @@ interface Props {
 }
 
 const SeminarItem: FC<Props> = observer(({ item }) => {
+  /* У каждого семинара есть модалка для редактирования */
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const closeModalDelete = () => {

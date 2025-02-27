@@ -5,6 +5,7 @@ import SeminarItem from "./components/seminar-item/seminar-item";
 import styles from './app.module.css'
 
 const App: FC = observer(() => {
+  /* Получаем семинары */
   const {loadSeminars, seminars, status} = useStore();
   useEffect(() => {
     loadSeminars();
