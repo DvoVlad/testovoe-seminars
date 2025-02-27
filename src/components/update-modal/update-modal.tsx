@@ -1,4 +1,4 @@
-import { useEffect, FC, useState } from 'react';
+import { useEffect, FC, useState, FormEvent } from 'react';
 import { createPortal } from 'react-dom';
 import ModalOverlay from './modal-overlay/modal-overlay';
 import styles from "./update-modal.module.css";
@@ -36,7 +36,8 @@ const UpdateModal: FC<Props> = observer(({ onClose, item }) => {
     setDatas(newData);
   }
 
-  const onSubmit = () => {
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
     const result = {...datas};
     console.log(result);
     request(`/seminars/${item.id}`, { method: 'PUT', body: JSON.stringify(result) })
@@ -55,16 +56,18 @@ const UpdateModal: FC<Props> = observer(({ onClose, item }) => {
         <div className={styles.modal}>
           <button className={styles.closeButton} onClick={onClose} type="button">X</button>
           <h2 className={styles.title}>Редактирование</h2>
-          <form className={styles.form}>
-            {isError && <p className='error'>ERROR</p>}
+          <form className={styles.form} onSubmit={onSubmit}>
+            {isError && <p className='error'>Ошибка обновления</p>}
             <label className={styles.titleLabel} htmlFor="date">Дата</label><input id="date" className={styles.inputs} type="text" name='date' value={datas.date} onChange={(e) => onChangeInput(e.target.name, e.target.value)} />
             <label className={styles.titleLabel} htmlFor="time">Время</label><input id="time" className={styles.inputs} type="text" name='time' value={datas.time} onChange={(e) => onChangeInput(e.target.name, e.target.value)} />
             <label className={styles.titleLabel} htmlFor="title">Название</label><input id="title" className={styles.inputs} type="text" name='title' value={datas.title} onChange={(e) => onChangeInput(e.target.name, e.target.value)} />
             <label className={styles.titleLabel} htmlFor="photo">Ссылка на фото</label><input id="photo" className={styles.inputs} type="text" name='photo' value={datas.photo} onChange={(e) => onChangeInput(e.target.name, e.target.value)} />
             <label className={styles.titleLabel} htmlFor="description">Описание</label><textarea id="description" className={styles.description} name="description" onChange={(e) => onChangeInput(e.target.name, e.target.value)} value={datas.description}></textarea>
+            <div className={styles.groupButtons}>
+              <button className={styles.submitButton} type='submit'>Редактировать</button>
+              <button className={styles.cancel} onClick={onClose} type='button'>Отмена</button>
+            </div>
           </form>
-          <button className={styles.submitButton} onClick={onSubmit} type='button'>Редактировать</button>
-          <button className={styles.cancel} onClick={onClose} type='button'>Отмена</button>
         </div>
       </>,
       modalRoot

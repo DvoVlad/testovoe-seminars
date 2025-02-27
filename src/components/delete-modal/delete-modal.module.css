@@ -50,3 +50,7 @@
   min-width: 100px;
   margin-left: 400px;
 }
+
+.error {
+  color: red;
+}

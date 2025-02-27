@@ -17,7 +17,7 @@ const DeleteModal: FC<Props> = observer(({ onClose, id }) => {
   const { loadSeminars } = useStore();
   const [isError, setIsError] = useState(false);
   const submitDelete = () => {
-    request(`/seminar/${id}`, {
+    request(`/seminars/${id}`, {
       method: 'DELETE'
     })
     .catch((e) => {
@@ -46,7 +46,7 @@ const DeleteModal: FC<Props> = observer(({ onClose, id }) => {
         <ModalOverlay onClick={onClose}/>
         <div className={styles.modal}>
           <button className={styles.closeButton} onClick={onClose} type="button">X</button>
-          {isError && <p>ERROR</p>}
+          {isError && <p className={styles.error}>Ошибка удаления</p>}
           <p className={styles.title}>Вы точно хотите удалить элемент?</p>
           <button className={styles.submitButton} onClick={submitDelete} type='button'>Да</button>
           <button className={styles.cancel} onClick={onClose} type='button'>Нет</button>
