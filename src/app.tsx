@@ -12,12 +12,12 @@ const App: FC = observer(() => {
 
   return (
     <>
-      <h1>Seminars</h1>
+      <h1 className={styles.title}>Seminars</h1>
       {status === 'error' && <p>Ошибка загрузки!</p>}
       {status === 'pending' && <p>loading...</p>}
       {status === 'success' && <ul className={styles.list}>
         { seminars.map((item) =>(
-          <li>
+          <li key={item.id}>
             <SeminarItem item={item}/>
           </li>
           ))}

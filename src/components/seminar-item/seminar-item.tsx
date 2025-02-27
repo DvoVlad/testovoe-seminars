@@ -27,10 +27,10 @@ const SeminarItem: FC<Props> = observer(({ item }) => {
   return (
     <div className={styles.item}>
       <h2>{item.title}</h2>
-      <p>{item.time}</p>
-      <p>{item.date}</p>
-      <p>{item.description}</p>
-      <img className={styles.image} height="250" src={item.photo} alt={item.title} />
+      <p>Время: {item.time}</p>
+      <p>Дата: {item.date}</p>
+      <p>Описание: {item.description}</p>
+      {item.photo && <img className={styles.image} height="250" src={item.photo} alt={item.title} />}
       <button onClick={openModalDelete} type="button">УДАЛИТЬ</button>
       <button onClick={openModalEdit} type="button">РЕДАКТИРОВАТЬ</button>
       {isOpenDeleteModal && <DeleteModal onClose={closeModalDelete} id={+item.id}/>}

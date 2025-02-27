@@ -4,7 +4,7 @@ import { request } from '../utils/helper';
 type loadStatus = 'pending' | 'success' | 'error' | null;
 
 export interface ISeminar {
-  id: number; 
+  id: number | string; 
   title: string;
   description: string;
   date: string;
