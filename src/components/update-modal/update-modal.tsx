@@ -57,7 +57,7 @@ const UpdateModal: FC<Props> = observer(({ onClose, item }) => {
           <button className={styles.closeButton} onClick={onClose} type="button">X</button>
           <h2 className={styles.title}>Редактирование</h2>
           <form className={styles.form} onSubmit={onSubmit}>
-            {isError && <p className='error'>Ошибка обновления</p>}
+            {isError && <p className={styles.error}>Ошибка обновления</p>}
             <label className={styles.titleLabel} htmlFor="date">Дата</label><input id="date" className={styles.inputs} type="text" name='date' value={datas.date} onChange={(e) => onChangeInput(e.target.name, e.target.value)} />
             <label className={styles.titleLabel} htmlFor="time">Время</label><input id="time" className={styles.inputs} type="text" name='time' value={datas.time} onChange={(e) => onChangeInput(e.target.name, e.target.value)} />
             <label className={styles.titleLabel} htmlFor="title">Название</label><input id="title" className={styles.inputs} type="text" name='title' value={datas.title} onChange={(e) => onChangeInput(e.target.name, e.target.value)} />
